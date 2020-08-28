@@ -1,0 +1,12 @@
+/.DS_Store
+/.classpath
+/.springBeans
+/.project
+/target/
+/.settings/
+/bin/
+/.idea
+/*.iml
+/**/*.iml
+/logs
+/test-output/

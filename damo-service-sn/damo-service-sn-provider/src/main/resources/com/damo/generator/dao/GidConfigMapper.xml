@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damo.generator.dao.GidConfigMapper">
+  <resultMap id="gidConfigMap" type="com.damo.generator.model.GidConfigDAO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="date_format" jdbcType="VARCHAR" property="dateFormat" />
+    <result column="id_type" jdbcType="TINYINT" property="idType" />
+    <result column="seq_type" jdbcType="TINYINT" property="seqType" />
+    <result column="id_key" jdbcType="VARCHAR" property="idKey" />
+    <result column="id_format" jdbcType="VARCHAR" property="idFormat" />
+    <result column="sn" jdbcType="BIGINT" property="sn" />
+    <result column="sn_limit" jdbcType="VARCHAR" property="snLimit" />
+    <result column="step" jdbcType="INTEGER" property="step" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, `name`, code, date_format, id_type, seq_type, id_key, id_format, sn, sn_limit, 
+    step, `operator`, gmt_create, gmt_modify
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="gidConfigMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gid_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gid_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.damo.generator.model.GidConfigDAO" useGeneratedKeys="true">
+    insert into gid_config (`name`, code, date_format, 
+      id_type, seq_type, id_key, 
+      id_format, sn, sn_limit, 
+      step, `operator`, gmt_create, 
+      gmt_modify)
+    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{dateFormat,jdbcType=VARCHAR}, 
+      #{idType,jdbcType=TINYINT}, #{seqType,jdbcType=TINYINT}, #{idKey,jdbcType=VARCHAR}, 
+      #{idFormat,jdbcType=VARCHAR}, #{sn,jdbcType=BIGINT}, #{snLimit,jdbcType=VARCHAR}, 
+      #{step,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, now(3),
+      now(3))
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.damo.generator.model.GidConfigDAO" useGeneratedKeys="true">
+    insert into gid_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="dateFormat != null">
+        date_format,
+      </if>
+      <if test="idType != null">
+        id_type,
+      </if>
+      <if test="seqType != null">
+        seq_type,
+      </if>
+      <if test="idKey != null">
+        id_key,
+      </if>
+      <if test="idFormat != null">
+        id_format,
+      </if>
+      <if test="sn != null">
+        sn,
+      </if>
+      <if test="snLimit != null">
+        sn_limit,
+      </if>
+      <if test="step != null">
+        step,
+      </if>
+      <if test="operator != null">
+        `operator`,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFormat != null">
+        #{dateFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null">
+        #{idType,jdbcType=TINYINT},
+      </if>
+      <if test="seqType != null">
+        #{seqType,jdbcType=TINYINT},
+      </if>
+      <if test="idKey != null">
+        #{idKey,jdbcType=VARCHAR},
+      </if>
+      <if test="idFormat != null">
+        #{idFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="snLimit != null">
+        #{snLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="step != null">
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByExampleSelective" parameterType="map">
+    update gid_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateFormat != null">
+        date_format = #{record.dateFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idType != null">
+        id_type = #{record.idType,jdbcType=TINYINT},
+      </if>
+      <if test="record.seqType != null">
+        seq_type = #{record.seqType,jdbcType=TINYINT},
+      </if>
+      <if test="record.idKey != null">
+        id_key = #{record.idKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idFormat != null">
+        id_format = #{record.idFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null">
+        sn = #{record.sn,jdbcType=BIGINT},
+      </if>
+      <if test="record.snLimit != null">
+        sn_limit = #{record.snLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.step != null">
+        step = #{record.step,jdbcType=INTEGER},
+      </if>
+      <if test="record.operator != null">
+        `operator` = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null">
+        gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gid_config
+    set id = #{record.id,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      date_format = #{record.dateFormat,jdbcType=VARCHAR},
+      id_type = #{record.idType,jdbcType=TINYINT},
+      seq_type = #{record.seqType,jdbcType=TINYINT},
+      id_key = #{record.idKey,jdbcType=VARCHAR},
+      id_format = #{record.idFormat,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=BIGINT},
+      sn_limit = #{record.snLimit,jdbcType=VARCHAR},
+      step = #{record.step,jdbcType=INTEGER},
+      `operator` = #{record.operator,jdbcType=VARCHAR},
+      gmt_modify = now(3)
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.damo.generator.model.GidConfigDAO">
+    update gid_config
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFormat != null">
+        date_format = #{dateFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null">
+        id_type = #{idType,jdbcType=TINYINT},
+      </if>
+      <if test="seqType != null">
+        seq_type = #{seqType,jdbcType=TINYINT},
+      </if>
+      <if test="idKey != null">
+        id_key = #{idKey,jdbcType=VARCHAR},
+      </if>
+      <if test="idFormat != null">
+        id_format = #{idFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        sn = #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="snLimit != null">
+        sn_limit = #{snLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="step != null">
+        step = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        `operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+        gmt_modify = now(3),
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.damo.generator.model.GidConfigDAO">
+    update gid_config
+    set `name` = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      date_format = #{dateFormat,jdbcType=VARCHAR},
+      id_type = #{idType,jdbcType=TINYINT},
+      seq_type = #{seqType,jdbcType=TINYINT},
+      id_key = #{idKey,jdbcType=VARCHAR},
+      id_format = #{idFormat,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=BIGINT},
+      sn_limit = #{snLimit,jdbcType=VARCHAR},
+      step = #{step,jdbcType=INTEGER},
+      `operator` = #{operator,jdbcType=VARCHAR},
+      gmt_modify = now(3)
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByCode" resultMap="gidConfigMap">
+    select
+    <include refid="Base_Column_List" />
+    from gid_config
+    where code = #{code}
+  </select>
+
+  <update id="updateByLock" >
+    update gid_config
+    set
+      sn = #{config.sn},
+      `operator` = #{config.operator},
+      gmt_modify = now(3)
+    where id = #{config.id} and sn= #{old}
+  </update>
+
+  <update id="updateByLockLimit" >
+    update gid_config
+    set
+      sn_limit = #{config.snLimit},
+      `operator` = #{config.operator},
+      gmt_modify = now(3)
+    where id = #{config.id} and sn_limit= #{old}
+  </update>
+
+  <select id="getList" parameterType="map" resultMap="gidConfigMap">
+    select
+    <include refid="Base_Column_List" />
+    from gid_config
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+    </where>
+  </select>
+</mapper>

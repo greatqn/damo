@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%5p %d %C-%L: %m %n</pattern>
+		</encoder>
+	</appender>
+	<appender name="rollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/demo.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/demo.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36}-%L - %msg
+				%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.springframework.aop" level="ERROR" />
+	<logger name="org.aspectj" level="ERROR"></logger>
+	<logger name="org.hibernate" level="ERROR" />
+	<logger name="org.hibernate.SQL" level="DEBUG" />
+	<logger name="org.apache.shiro" level="ERROR" />
+	<logger name="com.alibaba.fastjson" level="ERROR" />
+	<logger name="org.apache.shiro.session" level="OFF" />
+	<logger name="org.springframework.data.redis" level="ERROR" />
+	<logger name="jdbc.connection" level="FATAL" />
+	<logger name="jdbc.resultset" level="INFO" />
+	<logger name="jdbc.audit" level="INFO" />
+	<logger name="jdbc.sqlonly" level="DEBUG" />
+	<logger name="jdbc.sqltiming" level="DEBUG" />
+	<logger name="com.alibaba.dubbo.common" level="ERROR" />
+	<root level="INFO">
+		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
+	</root>
+</configuration>

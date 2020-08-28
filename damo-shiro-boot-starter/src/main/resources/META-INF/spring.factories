@@ -1,0 +1,10 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.damo.shiro.autoconfigure.session.ShiroWebAutoConfiguration,\
+com.damo.shiro.autoconfigure.session.ShiroBeanAutoConfiguration,\
+com.damo.shiro.autoconfigure.session.ShiroWebFilterAutoConfiguration,\
+com.damo.shiro.autoconfigure.session.ShiroAnnotationProcessorAutoConfiguration,\
+com.damo.shiro.autoconfigure.stateless.ShiroWebAutoConfiguration,\
+com.damo.shiro.autoconfigure.stateless.ShiroBeanAutoConfiguration,\
+com.damo.shiro.autoconfigure.stateless.ShiroWebFilterAutoConfiguration,\
+com.damo.shiro.autoconfigure.stateless.ShiroAnnotationProcessorAutoConfiguration,\
+com.damo.shiro.autoconfigure.ShiroWebAutoConfiguration
