@@ -69,4 +69,6 @@ soul网关
 
 数据库版本管理
 
+数据库文档生成 https://mp.weixin.qq.com/s/c_kDzZbV1bKWSm6YjxqeSQ
+
 [序号服务](./doc/sn_starter.md)
