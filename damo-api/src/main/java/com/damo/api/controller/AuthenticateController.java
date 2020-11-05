@@ -43,21 +43,21 @@ import com.damo.shiro.autoconfigure.stateless.support.jwt.Payload;
 @RestController
 @RequestMapping("/auth")
 public class AuthenticateController {
-    
+
     @Autowired
     private JWTManager jwtManager;
 
     @ApiOperation(value = "获取token", notes = "提供客户端key")
     @RequestMapping(value = "/apply-token", method = RequestMethod.POST)
     public Map<String, Object> applyToken(@RequestParam(name = "clientKey") String clientKey) {
-        
+
         Payload payload = new Payload();
         payload.put("uid", 123L);
         payload.put("username", "中文");
         payload.put("roles", "T,G");
         payload.put("permissions", "system:user:view,system:user:add");
         String token = jwtManager.create(ShiroWebAutoConfiguration.DEFAULT_ISSUER, payload);
-        
+
         BaseResponse result = BaseResponse.success();
         result.data(token);
         return result;
@@ -70,7 +70,7 @@ public class AuthenticateController {
         return payload.toString();
     }
 
-    
+
     @ApiOperation(value = "test显示session", notes = "显示session的内容")
     @RequestMapping(value = "/show-session", method = RequestMethod.GET)
     public String issueToken(@ApiIgnore() HttpSession session) throws Exception {
@@ -82,10 +82,10 @@ public class AuthenticateController {
             sb.append(session.getAttribute(e.nextElement().toString()));
             sb.append("|");
         }
-        
+
         Payload payload = jwtManager.verifyAndParsePayload(ShiroWebAutoConfiguration.DEFAULT_ISSUER, SecurityUtils.getSubject().getPrincipal().toString());
         sb.append(payload.toString());
-        
+
         return sb.toString();
     }
 }

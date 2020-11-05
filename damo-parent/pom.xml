@@ -22,7 +22,7 @@
 		<druid-spring-boot.version>1.1.10</druid-spring-boot.version>
 		<mysql.version>[8.0.16,)</mysql.version>
 		<mongodb-driver.version>2.12.2</mongodb-driver.version>
-		<shiro.version>[1.6.0,)</shiro.version>
+		<shiro.version>1.6.0</shiro.version>
 		<rocketmq.version>4.3.1</rocketmq.version>
 		<jedis.version>2.9.0</jedis.version>
 		<fastjson.version>[1.2.31,)</fastjson.version>

@@ -72,3 +72,8 @@ soul网关
 数据库文档生成 https://mp.weixin.qq.com/s/c_kDzZbV1bKWSm6YjxqeSQ
 
 [序号服务](./doc/sn_starter.md)
+
+运维平台 https://mp.weixin.qq.com/s/Ss-ADmhhB_-mvxZyfQYL9A
+
+https://gitee.com/durcframework/swagger-admin
+

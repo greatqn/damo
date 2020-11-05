@@ -36,7 +36,7 @@ import com.damo.shiro.autoconfigure.stateless.support.jwt.Payload;
 @RestController
 @RequestMapping(value = "/hello")
 public class HelloController {
-    
+
     @Autowired
     private JWTManager jwtManager;
 
@@ -47,7 +47,7 @@ public class HelloController {
         result.put("token", SecurityUtils.getSubject().getPrincipal());
         return result;
     }
-    
+
     @ApiOperation(value = "打个招呼", notes = "")
     @RequestMapping(value = "/fail", method = RequestMethod.GET)
     public BaseResponse fail() {
@@ -55,33 +55,33 @@ public class HelloController {
 
         return result;
     }
-    
+
     @ApiOperation(value = "打个招呼", notes = "")
     @RequestMapping(value = "/exception", method = RequestMethod.GET)
     public BaseResponse exception() {
         throw new GlobalException(300,"一个异常");
     }
-    
+
     @ApiOperation(value = "获取用户详细信息", notes = "根据url的id来获取用户详细信息")
     @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "Long" ,paramType="path", example ="1")
     @RequestMapping(value = "/findone/{userId}", method = RequestMethod.GET)
     public BaseResponse getUser(@PathVariable Long userId) {
         BaseResponse result = BaseResponse.success();
-        
+
         return result;
     }
-    
+
     public Payload parseJWT() {
         Object principal = SecurityUtils.getSubject().getPrincipal();
         if(principal == null) return null;
-        
+
         return jwtManager.verifyAndParsePayload("access_token", SecurityUtils.getSubject().getPrincipal().toString());
     }
-    
+
     public Integer getUserId(){
         Payload payload = parseJWT();
         if(payload == null) return 0;
         return (Integer)payload.get("uid");
     }
-    
+
 }
